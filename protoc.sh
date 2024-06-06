@@ -24,6 +24,7 @@ go mod init \
   github.com/ayuved/microservices-proto/golang/${SERVICE_NAME} || true
 go mod tidy
 cd ../../
+echo "git"
 git add . && git commit -am "proto update" || true
 git push origin HEAD:main
 git tag -fa golang/${SERVICE_NAME}/${RELEASE_VERSION} \
