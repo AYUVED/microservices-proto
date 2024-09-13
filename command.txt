@@ -3,7 +3,10 @@ chmod +x ./protoc.sh
 sudo ./protoc.sh order v1.0.0 nileshthingalaya nileshdt@gmail.com
  ./protoc.sh payment v1.0.0 nileshthingalaya nileshdt@gmail.com
  ./protoc.sh shipping v1.0.0 nileshdt nileshdt@gmail.com
+ ./protoc.sh log v1.0.0 nileshdt nileshdt@gmail.com
 
  go get -u github.com/ayuved/microservices-proto/golang/order@latest
  go get -u github.com/ayuved/microservices-proto/golang/payment@latest
  go get -u github.com/ayuved/microservices-proto/golang/shipping@latest
+ go get -u github.com/ayuved/microservices-proto/golang/log@latest
+ 
