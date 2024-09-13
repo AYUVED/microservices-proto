@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = "github.com/huseyinbabal/microservices-proto/log";
+
+message CreateLogRequest {
+    string app = 1;
+    string name = 2;
+    string data = 3;
+}
+
+message CreateLogResponse {
+    int64 id = 1;
+}
+
+service Payment {
+    rpc Create(CreateLogRequest) returns (CreateLogResponse){}
+}
