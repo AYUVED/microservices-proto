@@ -9,9 +9,20 @@ message CreateLogRequest {
 }
 
 message CreateLogResponse {
-    int64 id = 1;
+    string id = 1;
 }
 
-service Payment {
-    rpc Create(CreateLogRequest) returns (CreateLogResponse){}
+message GetLogRequest {
+    string id = 1;
+}
+
+message GetLogResponse {
+    string id = 1;
+    string app = 2;
+    string name = 3;
+    string data = 4;
+}
+service Log {
+    rpc Add(CreateLogRequest) returns (CreateLogResponse){}
+    rpc Get(GetLogRequest) returns (GetLogResponse){}
 }
