@@ -4,7 +4,7 @@
 // - protoc             v5.27.0
 // source: logservice/logservice.proto
 
-package log
+package logservice
 
 import (
 	context "context"
