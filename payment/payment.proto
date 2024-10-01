@@ -1,11 +1,60 @@
 syntax = "proto3";
 
-option go_package = "github.com/huseyinbabal/microservices-proto/payment";
+option go_package = "github.com/ayuved/microservices-proto/payment";
+
+message CreatePaymentMethodRequest {
+    string name = 1;
+    string description = 2;
+    int32 type = 3;
+    int32 status = 4;
+    bool is_default = 5;
+    bool is_active = 6;
+}
+message CreatePaymentMethodResponse {
+    int64 payment_id = 1;
+}
+
+message GetPaymentMethodRequest {
+    int64 id = 1;
+}
+message GetPaymentMethodResponse {
+    int64  id = 1;
+    string name = 2;
+    string description = 3;
+    string type = 4;
+    string status = 5;
+    bool is_default = 6;
+    bool is_active = 7;
+}
+
+message UpdatePaymentMethodRequest {
+    int64 id = 1;
+    string name = 2;
+    string description = 3;
+    string type = 4;
+    string status = 5;
+    bool is_default = 6;
+    bool is_active = 7;
+}
+message UpdatePaymentMethodResponse {
+    int64 id = 1;
+}
+
+message DeletePaymentMethodRequest {
+    int64 id = 1;
+}
+message DeletePaymentMethodResponse {
+    int64 id = 1;
+}
 
 message CreatePaymentRequest {
     int64 user_id = 1;
     int64 order_id = 2;
     float total_price = 3;
+    string method = 4;
+    string status = 5;
+    string description = 8;
+    string currency = 9;
 }
 
 message CreatePaymentResponse {
@@ -13,6 +62,27 @@ message CreatePaymentResponse {
     int64 bill_id = 2;
 }
 
+message GetPaymentRequest {
+    int64 payment_id = 1;
+}
+message GetPaymentResponse {
+    int64 payment_id = 1;
+    int64 user_id = 2;
+    int64 order_id = 3;
+    float total_price = 4;
+    string method = 5;
+    string status = 6;
+    string description = 7;
+    string currency = 8;
+}
+
 service Payment {
+    rpc CreatePaymentMethod(CreatePaymentMethodRequest) returns (CreatePaymentMethodResponse){}
+    rpc GetPaymentMethod(GetPaymentMethodRequest) returns (GetPaymentMethodResponse){}
+    rpc UpdatePaymentMethod(UpdatePaymentMethodRequest) returns (UpdatePaymentMethodResponse){}
+    rpc DeletePaymentMethod(DeletePaymentMethodRequest) returns (DeletePaymentMethodResponse){}
+
     rpc Create(CreatePaymentRequest) returns (CreatePaymentResponse){}
+    rpc Get(GetPaymentRequest) returns (GetPaymentResponse){}
+
 }

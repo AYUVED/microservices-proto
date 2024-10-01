@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option go_package = "github.com/ayuved/microservices-proto/product";
+
+message CreateProductRequest {
+    string product_name = 1;
+    string product_description = 2;
+}
+message CreateProductResponse {
+    int64 product_id = 1;
+}
+
+message GetProductRequest {
+    int64 product_id = 1;
+}
+message GetProductResponse {
+
+    int64 product_id = 1;
+    string product_name = 2;
+    string product_description = 3;
+}
+
+message UpdateProductRequest {
+    int64 product_id = 1;
+    string product_name = 2;
+    string product_description = 3;
+}
+message UpdateProductResponse {
+    int64 product_id = 1;
+}
+
+message DeleteProductRequest {
+    int64 product_id = 1;
+}
+message DeleteProductResponse {
+    int64 product_id = 1;
+}
+
+
