@@ -8,6 +8,8 @@ sudo ./protoc.sh log v1.0.0 nileshdt nileshdt@gmail.com
 sudo ./protoc.sh payment v1.0.0 nileshdt nileshdt@gmail.com
 sudo ./protoc.sh shipping v1.0.0 nileshdt nileshdt@gmail.com
 
+sudo ./protoc.sh log v1.0.0 nileshdt nileshdt@gmail.com
+
 To set up SSH for GitHub, follow these steps:
 Generate an SSH key (if you don't already have one):
 Bash
