@@ -80,6 +80,16 @@ message DeleteAddressRequest {
 message DeleteAddressResponse {
     string id = 1;
 }
+message ShippingItem {
+    string id = 1;
+    string product_code = 2;
+    float unit_price = 3;
+    int32 quantity = 4;
+    int64 shipping_id = 5;
+    int64 created_at = 6;
+    int64 updated_at = 7;
+}
+	
 service Shipping {
     rpc CreateAddress(CreateAddressRequest) returns (CreateAddressResponse){}
     rpc GetAddress(GetAddressRequest) returns (GetAddressResponse){}
