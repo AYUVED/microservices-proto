@@ -2,7 +2,7 @@ chmod +x ./protoc.sh
 
 
 sudo ./protoc.sh order v1.0.0 nileshdt nileshdt@gmail.com
-sudo ./protoc.sh logservices v1.0.0 nileshdt nileshdt@gmail.com
+sudo ./protoc.sh logservice v1.0.0 nileshdt nileshdt@gmail.com
 sudo ./protoc.sh payment v1.0.0 nileshdt nileshdt@gmail.com
 sudo ./protoc.sh shipping v1.0.0 nileshdt nileshdt@gmail.com
 
