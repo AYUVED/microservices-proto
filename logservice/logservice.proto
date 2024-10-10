@@ -6,6 +6,10 @@ message CreateLogRequest {
     string app = 1;
     string name = 2;
     string data = 3;
+    string process_id = 4;
+    string type = 5;
+    string status = 6;
+    string user = 7;
 }
 
 message CreateLogResponse {
@@ -21,6 +25,10 @@ message GetLogResponse {
     string app = 2;
     string name = 3;
     string data = 4;
+    string process_id = 5;
+    string type = 6;
+    string status = 7;
+    string user = 8;
 }
 service Log {
     rpc Add(CreateLogRequest) returns (CreateLogResponse){}
