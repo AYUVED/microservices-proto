@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = "github.com/huseyinbabal/microservices-proto/eventEmitter";
+
+message CreateLogEventRequest {
+    string app = 1;
+    string name = 2;
+    string data = 3;
+    string process_id = 4;
+    string type = 5;
+    string status = 6;
+    string user = 7;
+}
+
+message CreateLogEventResponse {
+    string id = 1;
+}
+
+service EventEmitter {
+    rpc AddLogEvent(CreateLogEventRequest) returns (CreateLogEventResponse){}
+}
