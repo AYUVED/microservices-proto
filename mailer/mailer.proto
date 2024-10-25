@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+option go_package = "github.com/ayuved/microservices-proto/mailer";
+
+message CreateMailerRequest {
+    string app = 1;
+    string from = 2;
+    string to = 3;
+    string subject = 4;
+    string body = 5;
+    string cc = 6;
+    string bcc = 7;
+    string reply_to = 8;
+    string process_id = 9;
+    string type = 10;
+    string status = 11;
+    string user = 12;
+
+}
+
+message CreateMailerResponse {
+    string id = 1;
+}
+
+message GetMailerRequest {
+    string id = 1;
+}
+
+message GetMailerResponse {
+    string id = 1;
+    string app = 2;
+    string from = 3 ;
+    string to = 4;
+    string subject = 5;
+    string body = 6;
+    string cc = 7;
+    string bcc = 8;
+    string reply_to = 9;
+    string process_id = 10;
+    string type = 11;
+    string status = 12;
+    string user = 13;
+}
+service Log {
+    rpc Add(CreateMailerRequest) returns (CreateMailerResponse){}
+    rpc Get(GetMailerRequest) returns (GetMailerResponse){}
+}

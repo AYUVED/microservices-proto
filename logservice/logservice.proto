@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/huseyinbabal/microservices-proto/logservice";
+option go_package = "github.com/ayuved/microservices-proto/logservice";
 
 message CreateLogRequest {
     string app = 1;
