@@ -15,7 +15,9 @@ message CreateMailerRequest {
     string type = 10;
     string status = 11;
     string user = 12;
-
+    string template = 13;
+    repeated string attachments = 14;
+    repeated string data = 15;
 }
 
 message CreateMailerResponse {
@@ -40,8 +42,90 @@ message GetMailerResponse {
     string type = 11;
     string status = 12;
     string user = 13;
+    string template = 14;
+    repeated string attachments = 15;
+    repeated string data = 16;
+    string created_at = 17;
+    string updated_at = 18;
+    string created_by = 19;
+    string updated_by = 20;
 }
+
+message CreateTemplateRequest {
+    string name = 1;
+    string data = 2;
+    string user = 3;
+    string type = 4;
+    string status = 5;
+    string subject = 6;
+    string body = 7;
+    string from = 8;
+    string to = 9;
+    string cc = 10;
+    string bcc = 11;
+    string reply_to = 12;
+}
+
+message CreateTemplateResponse {
+    string id = 1;
+}
+
+message GetTemplateRequest {
+    string id = 1;
+}
+
+message GetTemplateResponse {
+    string id = 1;
+    string name = 2;
+    string data = 3;
+    string user = 4;
+    string type = 5;
+    string status = 6;
+    string subject = 7;
+    string body = 8;
+    string from = 9;
+    string to = 10;
+    string cc = 11;
+    string bcc = 12;
+    string reply_to = 13;
+    string created_at = 14;
+    string updated_at = 15;
+    string created_by = 16;
+    string updated_by = 17;
+}
+message UpdateTemplateRequest {
+    string id = 1;
+    string name = 2;
+    string data = 3;
+    string user = 4;
+    string type = 5;
+    string status = 6;
+    string subject = 7;
+    string body = 8;
+    string from = 9;
+    string to = 10;
+    string cc = 11;
+    string bcc = 12;
+    string reply_to = 13;
+}
+
+message UpdateTemplateResponse {
+    string id = 1;
+}
+
+message DeleteTemplateRequest {
+    string id = 1;
+}
+
+message DeleteTemplateResponse {
+    string id = 1;
+}
+
 service Log {
     rpc Add(CreateMailerRequest) returns (CreateMailerResponse){}
     rpc Get(GetMailerRequest) returns (GetMailerResponse){}
+    rpc AddTemplate(CreateTemplateRequest) returns (CreateTemplateResponse){}
+    rpc GetTemplate(GetTemplateRequest) returns (GetTemplateResponse){}
+    rpc UpdateTemplate(UpdateTemplateRequest) returns (UpdateTemplateResponse){}
+    rpc DeleteTemplate(DeleteTemplateRequest) returns (DeleteTemplateResponse){}
 }
