@@ -17,7 +17,7 @@ message CreateMailerRequest {
     string user = 12;
     string template = 13;
     repeated string attachments = 14;
-    repeated string data = 15;
+    repeated DataMap data = 15;
 }
 
 message CreateMailerResponse {
@@ -44,11 +44,15 @@ message GetMailerResponse {
     string user = 13;
     string template = 14;
     repeated string attachments = 15;
-    repeated string data = 16;
+    repeated DataMap data = 16;
     string created_at = 17;
     string updated_at = 18;
     string created_by = 19;
     string updated_by = 20;
+}
+message DataMap {
+    string name = 1;
+    string data = 2;
 }
 
 message CreateTemplateRequest {
@@ -64,6 +68,7 @@ message CreateTemplateRequest {
     string cc = 10;
     string bcc = 11;
     string reply_to = 12;
+    
 }
 
 message CreateTemplateResponse {
