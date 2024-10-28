@@ -126,7 +126,7 @@ message DeleteTemplateResponse {
     string id = 1;
 }
 
-service Log {
+service Mailer {
     rpc Add(CreateMailerRequest) returns (CreateMailerResponse){}
     rpc Get(GetMailerRequest) returns (GetMailerResponse){}
     rpc AddTemplate(CreateTemplateRequest) returns (CreateTemplateResponse){}
