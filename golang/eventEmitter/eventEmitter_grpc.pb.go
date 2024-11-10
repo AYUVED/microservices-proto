@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	EventEmitter_AddLogEvent_FullMethodName = "/EventEmitter/AddLogEvent"
+	EventEmitter_AddLogEvent_FullMethodName    = "/EventEmitter/AddLogEvent"
+	EventEmitter_AddMailerEvent_FullMethodName = "/EventEmitter/AddMailerEvent"
 )
 
 // EventEmitterClient is the client API for EventEmitter service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EventEmitterClient interface {
 	AddLogEvent(ctx context.Context, in *CreateLogEventRequest, opts ...grpc.CallOption) (*CreateLogEventResponse, error)
+	AddMailerEvent(ctx context.Context, in *CreateMailerEventRequest, opts ...grpc.CallOption) (*CreateMailerEventResponse, error)
 }
 
 type eventEmitterClient struct {
@@ -47,11 +49,22 @@ func (c *eventEmitterClient) AddLogEvent(ctx context.Context, in *CreateLogEvent
 	return out, nil
 }
 
+func (c *eventEmitterClient) AddMailerEvent(ctx context.Context, in *CreateMailerEventRequest, opts ...grpc.CallOption) (*CreateMailerEventResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateMailerEventResponse)
+	err := c.cc.Invoke(ctx, EventEmitter_AddMailerEvent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // EventEmitterServer is the server API for EventEmitter service.
 // All implementations must embed UnimplementedEventEmitterServer
 // for forward compatibility.
 type EventEmitterServer interface {
 	AddLogEvent(context.Context, *CreateLogEventRequest) (*CreateLogEventResponse, error)
+	AddMailerEvent(context.Context, *CreateMailerEventRequest) (*CreateMailerEventResponse, error)
 	mustEmbedUnimplementedEventEmitterServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedEventEmitterServer struct{}
 
 func (UnimplementedEventEmitterServer) AddLogEvent(context.Context, *CreateLogEventRequest) (*CreateLogEventResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddLogEvent not implemented")
+}
+func (UnimplementedEventEmitterServer) AddMailerEvent(context.Context, *CreateMailerEventRequest) (*CreateMailerEventResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddMailerEvent not implemented")
 }
 func (UnimplementedEventEmitterServer) mustEmbedUnimplementedEventEmitterServer() {}
 func (UnimplementedEventEmitterServer) testEmbeddedByValue()                      {}
@@ -104,6 +120,24 @@ func _EventEmitter_AddLogEvent_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _EventEmitter_AddMailerEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateMailerEventRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EventEmitterServer).AddMailerEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EventEmitter_AddMailerEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EventEmitterServer).AddMailerEvent(ctx, req.(*CreateMailerEventRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // EventEmitter_ServiceDesc is the grpc.ServiceDesc for EventEmitter service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var EventEmitter_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddLogEvent",
 			Handler:    _EventEmitter_AddLogEvent_Handler,
+		},
+		{
+			MethodName: "AddMailerEvent",
+			Handler:    _EventEmitter_AddMailerEvent_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -16,6 +16,31 @@ message CreateLogEventResponse {
     string id = 1;
 }
 
+message CreateMailerEventRequest {
+    string app = 1;
+    string template = 2 ;
+    string from = 3 ;
+    string to = 4 ;
+    string subject = 5;
+    string body = 6;
+    string cc = 7;
+    string bcc = 8;
+    string reply_to = 9;
+    string process_id = 10;
+    string type = 11;
+    string status = 12;
+    string user = 13;
+    string data_map = 14;
+    string attachments = 15;
+
+
+
+}
+message CreateMailerEventResponse {
+    string id = 1;
+}
 service EventEmitter {
     rpc AddLogEvent(CreateLogEventRequest) returns (CreateLogEventResponse){}
+    rpc AddMailerEvent(CreateMailerEventRequest) returns (CreateMailerEventResponse){}
+
 }
