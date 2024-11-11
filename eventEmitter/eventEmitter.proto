@@ -34,7 +34,6 @@ message CreateMailerEventRequest {
     string attachments = 15;
 
 
-
 }
 message CreateMailerEventResponse {
     string id = 1;
