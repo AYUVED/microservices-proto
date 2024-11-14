@@ -18,23 +18,27 @@ message CreateLogEventResponse {
 
 message CreateMailerEventRequest {
     string app = 1;
-    string template = 2 ;
-    string from = 3 ;
-    string to = 4 ;
-    string subject = 5;
-    string body = 6;
-    string cc = 7;
-    string bcc = 8;
-    string reply_to = 9;
-    string process_id = 10;
-    string type = 11;
-    string status = 12;
-    string user = 13;
-    string data_map = 14;
-    string attachments = 15;
-
+    string from = 2;
+    string to = 3;
+    string subject = 4;
+    string body = 5;
+    string cc = 6;
+    string bcc = 7;
+    string reply_to = 8;
+    string process_id = 9;
+    string type = 10;
+    string status = 11;
+    string user = 12;
+    string template = 13;
+    repeated string attachments = 14;
+    repeated DataMap data = 15;
 
 }
+message DataMap {
+    string name = 1;
+    string data = 2;
+}
+
 message CreateMailerEventResponse {
     string id = 1;
 }
