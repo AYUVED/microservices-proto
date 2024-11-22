@@ -31,10 +31,10 @@ message CreateMailerEventRequest {
     string user = 12;
     string template = 13;
     repeated string attachments = 14;
-    repeated DataMap data = 15;
+    repeated EventDataMap data = 15;
 
 }
-message DataMap {
+message EventDataMap {
     string name = 1;
     string data = 2;
 }
