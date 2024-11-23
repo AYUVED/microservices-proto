@@ -1,0 +1,146 @@
+syntax = "proto3";
+
+option go_package = "github.com/ayuved/microservices-proto/auth";
+
+
+service Auth {
+  rpc Register(RegisterRequest) returns (RegisterResponse) {}
+  rpc Login(LoginRequest) returns (LoginResponse) {}
+  rpc Validate(ValidateRequest) returns (ValidateResponse) {}
+  rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {}
+  rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
+  rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {}
+  rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse) {}
+  rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse) {}
+  rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {}
+  rpc Logout(LogoutRequest) returns (LogoutResponse) {}
+
+}
+
+message RegisterRequest {
+  string email = 1;
+  string password = 2;
+  string username = 3;
+  string role = 4;
+  string address_id = 5;
+  string phone = 6;
+  string first_name = 7;
+  string last_name = 8;
+  string city = 9;
+  string state = 10;
+  string zip = 11;
+  string country = 12;
+  repeated string roles = 13;
+  string recaptcha_token = 14;
+  bool accept_terms = 15;
+  map<string, string> metadata = 16;
+}
+
+message RegisterResponse {
+  int64 status = 1;
+  string error = 2;
+  int64 user_id = 3;
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  int64 status = 1;
+  string error = 2;
+  string access_token = 3;
+  string refresh_token = 4;
+  int64 expires_in = 5;
+  string token_type = 6;
+  repeated string permissions = 7;
+  repeated string roles = 8;
+}
+
+
+message ValidateRequest {
+  string token = 1;
+}
+
+message ValidateResponse {
+  int64 status = 1;
+  string error = 2;
+  int64 user_id = 3;
+}
+message RefreshTokenRequest {
+  string refresh_token = 1;
+}
+message RefreshTokenResponse {
+  int64 status = 1;
+  string error = 2;
+  string access_token = 3;
+  string refresh_token = 4;
+}
+
+
+message ForgotPasswordRequest {
+  string email = 1;
+}
+
+message ForgotPasswordResponse {
+  int64 status = 1;
+  string error = 2;
+}
+
+message ResetPasswordRequest {
+  string reset_token = 1;
+  string new_password = 2;
+}
+
+message ResetPasswordResponse {
+  int64 status = 1;
+  string error = 2;
+}
+
+message UpdateProfileRequest {
+  int64 user_id = 1;
+  optional string username = 2;
+  optional string email = 3;
+  optional string phone = 4;
+  optional string first_name = 5;
+  optional string last_name = 6;
+  optional string profile_picture = 7;
+  map<string, string> custom_attributes = 8;
+}
+
+message UpdateProfileResponse {
+  int64 status = 1;
+  string error = 2;
+}
+
+message VerifyEmailRequest {
+  string verification_token = 1;
+}
+
+message VerifyEmailResponse {
+  int64 status = 1;
+  string error = 2;
+}
+
+message ChangePasswordRequest {
+  int64 user_id = 1;
+  string old_password = 2;
+  string new_password = 3;
+}
+
+message ChangePasswordResponse {
+  int64 status = 1;
+  string error = 2;
+}
+
+message LogoutRequest {
+  string access_token = 1;
+}
+
+message LogoutResponse {
+  int64 status = 1;
+  string error = 2;
+}
+
+
